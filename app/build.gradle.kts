@@ -75,7 +75,7 @@ detekt {
     config.setFrom("${rootProject.projectDir}/config/detekt/detekt.yml")
     buildUponDefaultConfig = true
 
-    source = files("src/main/jav")
+    source = files("src/main/java")
 
     tasks {
         withType<Detekt> {

@@ -10,4 +10,4 @@
 ## UI変更
 | Before | After |
 |-------|-------|
-| ![Before Screenshot](URL_TO_BEFORE_IMAGE) | ![After Screenshot](URL_TO_AFTER_IMAGE) |
+| <img src="" width="300" /> | <img src="" width="300" /> |

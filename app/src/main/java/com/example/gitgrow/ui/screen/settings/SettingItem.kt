@@ -23,7 +23,7 @@ data object AccountSettings {
 data object ThemeSettings {
     val list = persistentListOf(
         SettingItem(
-            itemName = "テーマ",
+            itemName = "カラーテーマ",
             icon = Icons.Default.Palette,
         ),
     )

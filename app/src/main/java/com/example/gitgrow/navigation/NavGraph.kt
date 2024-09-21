@@ -1,11 +1,8 @@
 package com.example.gitgrow.navigation
 
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -14,6 +11,7 @@ import androidx.navigation.compose.composable
 import com.example.gitgrow.ui.screen.account_setting.AccountSettingScreen
 import com.example.gitgrow.ui.screen.settings.SettingsScreen
 import com.example.gitgrow.ui.screen.theme_setting.ThemeSettingScreen
+import com.example.gitgrow.ui.theme.AnimationConfig
 
 @Composable
 fun NavGraph(
@@ -25,9 +23,7 @@ fun NavGraph(
         modifier = modifier,
         startDestination = Screen.Settings,
     ) {
-        composable<Screen.Settings>(
-
-        ) {
+        composable<Screen.Settings> {
             SettingsScreen(
                 toAccountSetting = {
                     navController.navigate(Screen.AccountSetting)
@@ -40,32 +36,32 @@ fun NavGraph(
         composable<Screen.AccountSetting>(
             enterTransition = {
                 slideInHorizontally(
-                    animationSpec = tween(700),
-                    initialOffsetX = { it }
+                    animationSpec = tween(AnimationConfig.SlideInDurationMillis),
+                    initialOffsetX = { it },
                 )
             },
             exitTransition = {
                 slideOutHorizontally(
-                    animationSpec = tween(700),
-                    targetOffsetX = { it }
+                    animationSpec = tween(AnimationConfig.SlideOutDurationMillis),
+                    targetOffsetX = { it },
                 )
-            }
+            },
         ) {
             AccountSettingScreen()
         }
         composable<Screen.ThemeSetting>(
             enterTransition = {
                 slideInHorizontally(
-                    animationSpec = tween(700),
-                    initialOffsetX = { it }
+                    animationSpec = tween(AnimationConfig.SlideInDurationMillis),
+                    initialOffsetX = { it },
                 )
             },
             exitTransition = {
                 slideOutHorizontally(
-                    animationSpec = tween(700),
-                    targetOffsetX = { it }
+                    animationSpec = tween(AnimationConfig.SlideOutDurationMillis),
+                    targetOffsetX = { it },
                 )
-            }
+            },
         ) {
             ThemeSettingScreen()
         }

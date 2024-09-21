@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="top_app_bar_height">64</dimen>
+
+    <dimen name="medium_padding">15</dimen>
+    <dimen name="small_padding">5</dimen>
+</resources>

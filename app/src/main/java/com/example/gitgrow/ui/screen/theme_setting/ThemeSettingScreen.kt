@@ -1,10 +1,14 @@
 package com.example.gitgrow.ui.screen.theme_setting
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Suppress("ModifierMissing")
 @Composable
 fun ThemeSettingScreen() {
-    Text("Theme Setting")
+    ThemeSettingScreenContent(
+        modifier = Modifier
+            .fillMaxSize(),
+    )
 }

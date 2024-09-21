@@ -2,13 +2,13 @@ package com.example.gitgrow.navigation
 
 import kotlinx.serialization.Serializable
 
-sealed class Screen(val route: String) {
+sealed interface Screen {
     @Serializable
-    data object Settings
+    data object Settings : Screen
 
     @Serializable
-    data object AccountSetting
+    data object AccountSetting : Screen
 
     @Serializable
-    data object ThemeSetting
+    data object ThemeSetting : Screen
 }

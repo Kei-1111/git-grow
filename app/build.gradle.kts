@@ -71,6 +71,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+//    Immutable
+    implementation(libs.kotlinx.collections.immutable)
+
+//    Material Icons Extended
+    implementation(libs.androidx.material.icons.extended)
+
 //    Navigation
     implementation(libs.androidx.navigation.compose)
 

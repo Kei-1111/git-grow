@@ -2,6 +2,7 @@ package com.example.gitgrow.ui.component
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -38,6 +39,8 @@ fun GitGrowTopBar(
 ) {
     val topPadding = WindowInsets.safeDrawing.asPaddingValues().calculateTopPadding()
 
+    val transition = updateTransition(targetState = currentScreen, label = "screenTransition")
+
     Surface(
         modifier = modifier
             .height(dimensionResource(id = R.dimen.top_app_bar_height) + topPadding),
@@ -53,16 +56,22 @@ fun GitGrowTopBar(
                     fadeIn(
                         animationSpec = tween(AnimationConfig.FadeInDurationMillis),
                     ).togetherWith(
-                        slideOutHorizontally(
+                        fadeOut(
+                            animationSpec = tween(AnimationConfig.FadeOutDurationMillis),
+                        ) + slideOutHorizontally(
                             animationSpec = tween(AnimationConfig.SlideOutDurationMillis),
                             targetOffsetX = { it },
                         ),
                     )
                 } else {
-                    slideInHorizontally(
-                        animationSpec = tween(AnimationConfig.SlideInDurationMillis),
-                        initialOffsetX = { it },
-                    ).togetherWith(
+                    (
+                        slideInHorizontally(
+                            animationSpec = tween(AnimationConfig.SlideInDurationMillis),
+                            initialOffsetX = { it },
+                        ) + fadeIn(
+                            animationSpec = tween(AnimationConfig.FadeInDurationMillis),
+                        )
+                        ).togetherWith(
                         fadeOut(
                             animationSpec = tween(AnimationConfig.FadeOutDurationMillis),
                         ),
@@ -73,6 +82,7 @@ fun GitGrowTopBar(
             GitGrowTopBarContent(
                 currentScreen = targetScreen,
                 back = back,
+                backButtonEnabled = !transition.isRunning,
                 modifier = Modifier.fillMaxSize(),
             )
         }
@@ -83,6 +93,7 @@ fun GitGrowTopBar(
 fun GitGrowTopBarContent(
     currentScreen: Screen,
     back: () -> Unit,
+    backButtonEnabled: Boolean,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -93,6 +104,7 @@ fun GitGrowTopBarContent(
         if (currentScreen != Screen.Settings) {
             IconButton(
                 onClick = back,
+                enabled = backButtonEnabled,
             ) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,

@@ -14,7 +14,7 @@ import com.example.gitgrow.ui.component.LabelMediumText
 @Composable
 fun AccountSettingScreenContent(
     uiState: AccountSettingUiState,
-    updateUserName: (String) -> Unit,
+    onEvent: (AccountSettingUiEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -28,7 +28,7 @@ fun AccountSettingScreenContent(
         GitGrowTextField(
             modifier = Modifier.fillMaxWidth(),
             text = uiState.userName,
-            onTextChange = updateUserName,
+            onTextChange = { onEvent(AccountSettingUiEvent.OnUserNameChange(it)) },
             label = "ユーザー名",
         )
     }

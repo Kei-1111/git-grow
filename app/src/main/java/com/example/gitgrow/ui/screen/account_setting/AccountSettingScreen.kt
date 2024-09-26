@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
@@ -26,6 +27,8 @@ fun AccountSettingScreen(
     val uiState by viewModel.uiState.collectAsState()
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    val latestBack by rememberUpdatedState(back)
+
     LaunchedEffect(lifecycleOwner, viewModel) {
         viewModel.uiEvent
             .flowWithLifecycle(lifecycleOwner.lifecycle)
@@ -35,10 +38,9 @@ fun AccountSettingScreen(
                         viewModel.updateUserName(event.value)
                     }
                     is AccountSettingUiEvent.SaveUserName -> {
-
                     }
                     is AccountSettingUiEvent.NavigateBack -> {
-                        back()
+                        latestBack()
                     }
                 }
             }

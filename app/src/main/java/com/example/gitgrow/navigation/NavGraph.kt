@@ -18,6 +18,8 @@ fun NavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
+    val back = { navController.popBackStack() }
+
     NavHost(
         navController = navController,
         modifier = modifier,
@@ -47,7 +49,9 @@ fun NavGraph(
                 )
             },
         ) {
-            AccountSettingScreen()
+            AccountSettingScreen(
+                back = { back() },
+            )
         }
         composable<Screen.ThemeSetting>(
             enterTransition = {

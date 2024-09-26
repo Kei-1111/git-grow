@@ -67,7 +67,9 @@ fun NavGraph(
                 )
             },
         ) {
-            ThemeSettingScreen()
+            ThemeSettingScreen(
+                navigateBack = { back() },
+            )
         }
     }
 }

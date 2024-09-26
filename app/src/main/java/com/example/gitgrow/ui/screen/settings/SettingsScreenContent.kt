@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -117,7 +118,8 @@ fun SettingItem(
 ) {
     Row(
         modifier = modifier
-            .padding(dimensionResource(id = R.dimen.medium_padding)),
+            .height(dimensionResource(id = R.dimen.item_height))
+            .padding(horizontal = dimensionResource(id = R.dimen.medium_padding)),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(

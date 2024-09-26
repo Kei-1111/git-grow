@@ -39,22 +39,23 @@ fun ThemeSettingScreenContent(
             color = MaterialTheme.colorScheme.surfaceContainerHighest,
             shape = MaterialTheme.shapes.medium,
         ) {
-            Column(
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.medium_padding)),
-            ) {
+            Column {
                 ColorThemeSettingItem(
                     title = "アプリのカラーテーマを使用する",
                     selected = uiState.useGitGrowThemeColor,
                     onClick = { onEvent(ThemeSettingUiEvent.SelectGitGrowThemeColor) },
-
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 HorizontalDivider(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = dimensionResource(id = R.dimen.medium_padding)),
                 )
                 ColorThemeSettingItem(
                     title = "ダイナミックカラーを使用する",
                     selected = uiState.useDynamicColor,
                     onClick = { onEvent(ThemeSettingUiEvent.SelectDynamicColor) },
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }
@@ -70,10 +71,11 @@ private fun ColorThemeSettingItem(
 ) {
     Row(
         modifier = modifier
-            .height(dimensionResource(id = R.dimen.item_height))
             .clickable(
                 onClick = onClick,
-            ),
+            )
+            .height(dimensionResource(id = R.dimen.item_height))
+            .padding(horizontal = dimensionResource(id = R.dimen.medium_padding)),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         BodyMediumText(

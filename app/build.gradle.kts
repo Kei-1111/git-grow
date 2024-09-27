@@ -97,6 +97,9 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+
+//    DataStore
+    implementation(libs.androidx.datastore.preferences)
 }
 
 detekt {

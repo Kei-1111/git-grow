@@ -21,13 +21,13 @@ import kotlinx.coroutines.flow.onEach
 @Suppress("ModifierMissing")
 @Composable
 fun AccountSettingScreen(
-    back: () -> Unit,
+    navigateBack: () -> Unit,
     viewModel: AccountSettingViewModel = viewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    val latestBack by rememberUpdatedState(back)
+    val latestNavigateBack by rememberUpdatedState(navigateBack)
 
     LaunchedEffect(lifecycleOwner, viewModel) {
         viewModel.uiEvent
@@ -40,7 +40,7 @@ fun AccountSettingScreen(
                     is AccountSettingUiEvent.SaveUserName -> {
                     }
                     is AccountSettingUiEvent.NavigateBack -> {
-                        latestBack()
+                        latestNavigateBack()
                     }
                 }
             }
@@ -53,7 +53,7 @@ fun AccountSettingScreen(
             GitGrowTopBar(
                 currentScreen = Screen.AccountSetting,
                 modifier = Modifier.fillMaxWidth(),
-                back = { viewModel.onEvent(AccountSettingUiEvent.NavigateBack) },
+                navigateBack = { viewModel.onEvent(AccountSettingUiEvent.NavigateBack) },
             )
         },
     ) { innerPadding ->

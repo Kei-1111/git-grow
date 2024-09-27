@@ -1,4 +1,4 @@
-package com.example.gitgrow.ui.screen.settings
+package com.example.gitgrow.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle

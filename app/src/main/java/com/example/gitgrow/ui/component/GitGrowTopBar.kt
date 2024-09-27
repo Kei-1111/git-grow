@@ -37,7 +37,9 @@ fun GitGrowTopBar(
         GitGrowTopBarContent(
             currentScreen = currentScreen,
             navigateBack = navigateBack,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = topPadding),
         )
     }
 }

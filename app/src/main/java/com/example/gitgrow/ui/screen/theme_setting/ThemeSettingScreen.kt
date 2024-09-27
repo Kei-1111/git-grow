@@ -10,9 +10,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gitgrow.navigation.Screen
 import com.example.gitgrow.ui.component.GitGrowTopBar
 import kotlinx.coroutines.flow.launchIn
@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.onEach
 @Composable
 fun ThemeSettingScreen(
     navigateBack: () -> Unit,
-    viewModel: ThemeSettingViewModel = viewModel(),
+    viewModel: ThemeSettingViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val lifecycleOwner = LocalLifecycleOwner.current

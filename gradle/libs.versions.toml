@@ -26,6 +26,13 @@ navigation-compose = "2.8.0"
 serialization = "1.9.0"
 kotlinx-serialization-core = "1.6.3"
 
+# KSP
+ksp = "1.9.0-1.0.12"
+
+# Hilt
+hilt = "2.49"
+hiltNavigationCompose = "1.2.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -58,8 +65,23 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 # Serialization
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization-core" }
 
+# Hilt
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+# detekt
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+# Serialization
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
+
+# KSP
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+# Hilt
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

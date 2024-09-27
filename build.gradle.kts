@@ -2,6 +2,16 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
+
+//    detekt
     alias(libs.plugins.detekt) apply false
+
+//    Serialization
     alias(libs.plugins.serialization) apply false
+
+//    KSP
+    alias(libs.plugins.ksp) apply false
+
+//    Hilt
+    alias(libs.plugins.hilt) apply false
 }

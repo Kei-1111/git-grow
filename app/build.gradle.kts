@@ -3,8 +3,18 @@ import io.gitlab.arturbosch.detekt.Detekt
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+//    detekt
     alias(libs.plugins.detekt)
+
+//    Serialization
     alias(libs.plugins.serialization)
+
+//    KSP
+    alias(libs.plugins.ksp)
+
+//    Hilt
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -82,6 +92,11 @@ dependencies {
 
 //    Serialization
     implementation(libs.kotlinx.serialization.core)
+
+//    Hilt
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
 }
 
 detekt {

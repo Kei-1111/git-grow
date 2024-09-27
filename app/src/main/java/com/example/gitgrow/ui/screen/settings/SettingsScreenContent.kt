@@ -18,6 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.gitgrow.R
+import com.example.gitgrow.model.AccountSettings
+import com.example.gitgrow.model.SettingItem
+import com.example.gitgrow.model.ThemeSettings
 import com.example.gitgrow.ui.component.BodyMediumText
 import com.example.gitgrow.ui.component.LabelMediumText
 import com.example.gitgrow.ui.theme.UiConfig
@@ -47,7 +50,7 @@ fun SettingsScreenContent(
 }
 
 @Composable
-fun AccountSetting(
+private fun AccountSetting(
     toAccountSetting: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -60,7 +63,7 @@ fun AccountSetting(
 }
 
 @Composable
-fun ThemeSetting(
+private fun ThemeSetting(
     toThemeSetting: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -73,7 +76,7 @@ fun ThemeSetting(
 }
 
 @Composable
-fun SettingsScreenItem(
+private fun SettingsScreenItem(
     title: String,
     settingItems: ImmutableList<SettingItem>,
     onClick: () -> Unit,
@@ -112,7 +115,7 @@ fun SettingsScreenItem(
 }
 
 @Composable
-fun SettingItem(
+private fun SettingItem(
     settingItem: SettingItem,
     modifier: Modifier = Modifier,
 ) {

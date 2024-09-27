@@ -50,7 +50,7 @@ fun NavGraph(
             },
         ) {
             AccountSettingScreen(
-                back = { back() },
+                navigateBack = { back() },
             )
         }
         composable<Screen.ThemeSetting>(

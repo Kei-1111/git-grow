@@ -1,19 +1,10 @@
 package com.example.gitgrow.ui.component
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.core.updateTransition
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -29,71 +20,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.gitgrow.R
 import com.example.gitgrow.navigation.Screen
-import com.example.gitgrow.ui.theme.AnimationConfig
 
 @Composable
 fun GitGrowTopBar(
     currentScreen: Screen,
     modifier: Modifier = Modifier,
-    back: () -> Unit = {},
+    navigateBack: () -> Unit = {},
 ) {
     val topPadding = WindowInsets.safeDrawing.asPaddingValues().calculateTopPadding()
-
-    val transition = updateTransition(targetState = currentScreen, label = "screenTransition")
 
     Surface(
         modifier = modifier
             .height(dimensionResource(id = R.dimen.top_app_bar_height) + topPadding),
         color = MaterialTheme.colorScheme.primaryContainer,
     ) {
-        AnimatedContent(
-            targetState = currentScreen,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = topPadding),
-            transitionSpec = {
-                if (currentScreen == Screen.Settings) {
-                    fadeIn(
-                        animationSpec = tween(AnimationConfig.FadeInDurationMillis),
-                    ).togetherWith(
-                        fadeOut(
-                            animationSpec = tween(AnimationConfig.FadeOutDurationMillis),
-                        ) + slideOutHorizontally(
-                            animationSpec = tween(AnimationConfig.SlideOutDurationMillis),
-                            targetOffsetX = { it },
-                        ),
-                    )
-                } else {
-                    (
-                        slideInHorizontally(
-                            animationSpec = tween(AnimationConfig.SlideInDurationMillis),
-                            initialOffsetX = { it },
-                        ) + fadeIn(
-                            animationSpec = tween(AnimationConfig.FadeInDurationMillis),
-                        )
-                        ).togetherWith(
-                        fadeOut(
-                            animationSpec = tween(AnimationConfig.FadeOutDurationMillis),
-                        ),
-                    )
-                }
-            },
-        ) { targetScreen ->
-            GitGrowTopBarContent(
-                currentScreen = targetScreen,
-                back = back,
-                backButtonEnabled = !transition.isRunning,
-                modifier = Modifier.fillMaxSize(),
-            )
-        }
+        GitGrowTopBarContent(
+            currentScreen = currentScreen,
+            navigateBack = navigateBack,
+            modifier = Modifier.fillMaxSize(),
+        )
     }
 }
 
 @Composable
 fun GitGrowTopBarContent(
     currentScreen: Screen,
-    back: () -> Unit,
-    backButtonEnabled: Boolean,
+    navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -103,8 +55,7 @@ fun GitGrowTopBarContent(
     ) {
         if (currentScreen != Screen.Settings) {
             IconButton(
-                onClick = back,
-                enabled = backButtonEnabled,
+                onClick = navigateBack,
             ) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,

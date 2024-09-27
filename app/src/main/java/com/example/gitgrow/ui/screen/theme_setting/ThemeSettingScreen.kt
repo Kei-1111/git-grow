@@ -27,7 +27,7 @@ fun ThemeSettingScreen(
     val uiState by viewModel.uiState.collectAsState()
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    val latestBack by rememberUpdatedState(navigateBack)
+    val latestNavigateBack by rememberUpdatedState(navigateBack)
 
     LaunchedEffect(lifecycleOwner, viewModel) {
         viewModel.uiEvent
@@ -41,7 +41,7 @@ fun ThemeSettingScreen(
                         viewModel.selectDynamicColor()
                     }
                     is ThemeSettingUiEvent.NavigateBack -> {
-                        latestBack()
+                        latestNavigateBack()
                     }
                 }
             }
@@ -54,7 +54,7 @@ fun ThemeSettingScreen(
             GitGrowTopBar(
                 currentScreen = Screen.ThemeSetting,
                 modifier = Modifier.fillMaxWidth(),
-                back = navigateBack,
+                navigateBack = navigateBack,
             )
         },
     ) { innerPadding ->

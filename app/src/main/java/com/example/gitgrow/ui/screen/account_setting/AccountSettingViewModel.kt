@@ -12,8 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AccountSettingViewModel @Inject constructor(
-) : ViewModel() {
+class AccountSettingViewModel @Inject constructor() : ViewModel() {
     private val _uiState = MutableStateFlow(AccountSettingUiState())
     val uiState: StateFlow<AccountSettingUiState> = _uiState.asStateFlow()
 

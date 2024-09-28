@@ -1,5 +1,6 @@
 package com.example.gitgrow.domain.repository
 
+import com.example.gitgrow.domain.model.ThemeColor
 import com.example.gitgrow.domain.model.UserSettings
 import kotlinx.coroutines.flow.Flow
 
@@ -8,8 +9,5 @@ interface UserSettingsRepository {
 
     suspend fun saveUserName(userName: String)
 
-    suspend fun saveThemeColor(
-        useGitGrowThemeColor: Boolean,
-        useDynamicColor: Boolean,
-    )
+    suspend fun saveThemeColor(themeColor: ThemeColor)
 }

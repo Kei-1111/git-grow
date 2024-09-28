@@ -1,5 +1,6 @@
 package com.example.gitgrow.ui.screen.theme_setting
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
@@ -29,6 +31,11 @@ fun ThemeSettingScreen(
 
     val latestNavigateBack by rememberUpdatedState(navigateBack)
 
+    val context = LocalContext.current
+    val makeToast: (String) -> Unit = { message ->
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
     LaunchedEffect(lifecycleOwner, viewModel) {
         viewModel.uiEvent
             .flowWithLifecycle(lifecycleOwner.lifecycle)
@@ -37,9 +44,24 @@ fun ThemeSettingScreen(
                     is ThemeSettingUiEvent.SelectGitGrowThemeColor -> {
                         viewModel.selectGitGrowThemeColor()
                     }
+
                     is ThemeSettingUiEvent.SelectDynamicColor -> {
                         viewModel.selectDynamicColor()
                     }
+
+                    is ThemeSettingUiEvent.SaveThemeColor -> {
+                        viewModel.saveThemeColor()
+                    }
+
+                    is ThemeSettingUiEvent.SaveSuccess -> {
+                        makeToast("保存しました")
+                        latestNavigateBack()
+                    }
+
+                    is ThemeSettingUiEvent.SaveFailure -> {
+                        makeToast("保存に失敗しました")
+                    }
+
                     is ThemeSettingUiEvent.NavigateBack -> {
                         latestNavigateBack()
                     }

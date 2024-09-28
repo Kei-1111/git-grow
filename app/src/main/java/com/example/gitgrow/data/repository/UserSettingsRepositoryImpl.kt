@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.gitgrow.di.IoDispatcher
+import com.example.gitgrow.domain.model.ThemeColor
 import com.example.gitgrow.domain.model.UserSettings
 import com.example.gitgrow.domain.repository.UserSettingsRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -38,8 +39,10 @@ class UserSettingsRepositoryImpl @Inject constructor(
         .map { preferences ->
             UserSettings(
                 userName = preferences[USER_NAME] ?: "",
-                useGitGrowThemeColor = preferences[USE_GIT_GROW_THEME_COLOR] ?: true,
-                useDynamicColor = preferences[USE_DYNAMIC_COLOR] ?: false,
+                themeColor = ThemeColor(
+                    useGitGrowThemeColor = preferences[USE_GIT_GROW_THEME_COLOR] ?: true,
+                    useDynamicColor = preferences[USE_DYNAMIC_COLOR] ?: false,
+                )
             )
         }
 
@@ -51,14 +54,11 @@ class UserSettingsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveThemeColor(
-        useGitGrowThemeColor: Boolean,
-        useDynamicColor: Boolean,
-    ) {
+    override suspend fun saveThemeColor(themeColor: ThemeColor) {
         withContext(ioDispatcher) {
             dataStore.edit { preferences ->
-                preferences[USE_GIT_GROW_THEME_COLOR] = useGitGrowThemeColor
-                preferences[USE_DYNAMIC_COLOR] = useDynamicColor
+                preferences[USE_GIT_GROW_THEME_COLOR] = themeColor.useGitGrowThemeColor
+                preferences[USE_DYNAMIC_COLOR] = themeColor.useDynamicColor
             }
         }
     }

@@ -1,6 +1,9 @@
 package com.example.gitgrow.ui.screen.theme_setting
 
+import com.example.gitgrow.domain.model.ThemeColor
+
 data class ThemeSettingUiState(
-    val useGitGrowThemeColor: Boolean = true,
-    val useDynamicColor: Boolean = false,
+    val selectThemeColor: ThemeColor = ThemeColor(),
+    val initialThemeColor: ThemeColor = ThemeColor(),
+    val enableSaveButton: Boolean = false,
 )

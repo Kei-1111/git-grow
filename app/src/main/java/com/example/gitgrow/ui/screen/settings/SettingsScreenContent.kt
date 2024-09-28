@@ -18,9 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.gitgrow.R
-import com.example.gitgrow.model.AccountSettings
-import com.example.gitgrow.model.SettingItem
-import com.example.gitgrow.model.ThemeSettings
+import com.example.gitgrow.domain.model.AccountSettings
+import com.example.gitgrow.domain.model.SettingItem
+import com.example.gitgrow.domain.model.ThemeSettings
 import com.example.gitgrow.ui.component.BodyMediumText
 import com.example.gitgrow.ui.component.LabelMediumText
 import com.example.gitgrow.ui.theme.UiConfig

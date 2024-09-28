@@ -69,7 +69,6 @@ class ThemeSettingViewModel @Inject constructor(
     fun saveThemeColor() {
         _uiState.update {
             it.copy(
-                initialThemeColor = it.selectThemeColor,
                 enableSaveButton = false,
             )
         }

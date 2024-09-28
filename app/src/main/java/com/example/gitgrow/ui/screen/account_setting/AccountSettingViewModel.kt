@@ -51,7 +51,6 @@ class AccountSettingViewModel @Inject constructor(
     fun saveUserName() {
         _uiState.update {
             it.copy(
-                initialUserName = it.userName,
                 enableSaveButton = false,
             )
         }

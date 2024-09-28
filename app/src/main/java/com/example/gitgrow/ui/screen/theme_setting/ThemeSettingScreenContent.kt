@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.gitgrow.R
 import com.example.gitgrow.ui.component.BodyMediumText
+import com.example.gitgrow.ui.component.GitGrowSaveButton
 import com.example.gitgrow.ui.component.LabelMediumText
 import com.example.gitgrow.ui.theme.UiConfig
 
@@ -42,7 +44,7 @@ fun ThemeSettingScreenContent(
             Column {
                 ColorThemeSettingItem(
                     title = "アプリのカラーテーマを使用する",
-                    selected = uiState.useGitGrowThemeColor,
+                    selected = uiState.selectThemeColor.useGitGrowThemeColor,
                     onClick = { onEvent(ThemeSettingUiEvent.SelectGitGrowThemeColor) },
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -53,12 +55,19 @@ fun ThemeSettingScreenContent(
                 )
                 ColorThemeSettingItem(
                     title = "ダイナミックカラーを使用する",
-                    selected = uiState.useDynamicColor,
+                    selected = uiState.selectThemeColor.useDynamicColor,
                     onClick = { onEvent(ThemeSettingUiEvent.SelectDynamicColor) },
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
         }
+        Spacer(
+            modifier = Modifier.weight(UiConfig.DefaultWeight),
+        )
+        GitGrowSaveButton(
+            onClick = { onEvent(ThemeSettingUiEvent.SaveThemeColor) },
+            enabled = uiState.enableSaveButton,
+        )
     }
 }
 

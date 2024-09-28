@@ -10,11 +10,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import com.example.gitgrow.navigation.Screen
 import com.example.gitgrow.ui.component.GitGrowTopBar
+import com.example.gitgrow.ui.utils.showToast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -29,6 +31,8 @@ fun ThemeSettingScreen(
 
     val latestNavigateBack by rememberUpdatedState(navigateBack)
 
+    val context = LocalContext.current
+
     LaunchedEffect(lifecycleOwner, viewModel) {
         viewModel.uiEvent
             .flowWithLifecycle(lifecycleOwner.lifecycle)
@@ -37,9 +41,24 @@ fun ThemeSettingScreen(
                     is ThemeSettingUiEvent.SelectGitGrowThemeColor -> {
                         viewModel.selectGitGrowThemeColor()
                     }
+
                     is ThemeSettingUiEvent.SelectDynamicColor -> {
                         viewModel.selectDynamicColor()
                     }
+
+                    is ThemeSettingUiEvent.SaveThemeColor -> {
+                        viewModel.saveThemeColor()
+                    }
+
+                    is ThemeSettingUiEvent.SaveSuccess -> {
+                        showToast(context, "保存しました")
+                        latestNavigateBack()
+                    }
+
+                    is ThemeSettingUiEvent.SaveFailure -> {
+                        showToast(context, "保存に失敗しました")
+                    }
+
                     is ThemeSettingUiEvent.NavigateBack -> {
                         latestNavigateBack()
                     }

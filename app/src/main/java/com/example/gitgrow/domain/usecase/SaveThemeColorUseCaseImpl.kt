@@ -5,7 +5,7 @@ import com.example.gitgrow.domain.repository.UserSettingsRepository
 import javax.inject.Inject
 
 class SaveThemeColorUseCaseImpl @Inject constructor(
-    private val userSettingsRepository: UserSettingsRepository
+    private val userSettingsRepository: UserSettingsRepository,
 ) : SaveThemeColorUseCase {
     override suspend operator fun invoke(themeColor: ThemeColor) {
         userSettingsRepository.saveThemeColor(themeColor)

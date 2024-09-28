@@ -1,6 +1,5 @@
 package com.example.gitgrow.ui.screen.theme_setting
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +16,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import com.example.gitgrow.navigation.Screen
 import com.example.gitgrow.ui.component.GitGrowTopBar
+import com.example.gitgrow.ui.utils.showToast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -32,9 +32,6 @@ fun ThemeSettingScreen(
     val latestNavigateBack by rememberUpdatedState(navigateBack)
 
     val context = LocalContext.current
-    val makeToast: (String) -> Unit = { message ->
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-    }
 
     LaunchedEffect(lifecycleOwner, viewModel) {
         viewModel.uiEvent
@@ -54,12 +51,12 @@ fun ThemeSettingScreen(
                     }
 
                     is ThemeSettingUiEvent.SaveSuccess -> {
-                        makeToast("保存しました")
+                        showToast(context, "保存しました")
                         latestNavigateBack()
                     }
 
                     is ThemeSettingUiEvent.SaveFailure -> {
-                        makeToast("保存に失敗しました")
+                        showToast(context, "保存に失敗しました")
                     }
 
                     is ThemeSettingUiEvent.NavigateBack -> {

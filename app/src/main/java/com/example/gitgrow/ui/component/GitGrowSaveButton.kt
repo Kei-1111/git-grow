@@ -26,10 +26,11 @@ fun GitGrowSaveButton(
     ) {
         BodyMediumText(
             text = "保存",
-            color = if (enabled)
+            color = if (enabled) {
                 MaterialTheme.colorScheme.primary
-            else
-                MaterialTheme.colorScheme.onSurface.copy(alpha = UiConfig.DisabledContentAlpha),
+            } else {
+                MaterialTheme.colorScheme.onSurface.copy(alpha = UiConfig.DisabledContentAlpha)
+            },
         )
     }
 }

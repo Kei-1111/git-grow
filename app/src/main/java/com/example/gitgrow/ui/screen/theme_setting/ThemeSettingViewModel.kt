@@ -1,5 +1,6 @@
 package com.example.gitgrow.ui.screen.theme_setting
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gitgrow.domain.model.ThemeColor
@@ -77,6 +78,7 @@ class ThemeSettingViewModel @Inject constructor(
                 saveThemeColorUseCase(uiState.value.selectThemeColor)
                 _uiEvent.emit(ThemeSettingUiEvent.SaveSuccess)
             } catch (e: Exception) {
+                Log.e("ThemeSettingViewModel", "Failed to save theme color", e)
                 _uiEvent.emit(ThemeSettingUiEvent.SaveFailure)
             }
         }

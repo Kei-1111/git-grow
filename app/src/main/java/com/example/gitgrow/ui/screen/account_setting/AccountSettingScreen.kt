@@ -1,6 +1,5 @@
 package com.example.gitgrow.ui.screen.account_setting
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -24,6 +23,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import com.example.gitgrow.navigation.Screen
 import com.example.gitgrow.ui.component.GitGrowTopBar
+import com.example.gitgrow.ui.utils.showToast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -40,9 +40,6 @@ fun AccountSettingScreen(
     val latestNavigateBack by rememberUpdatedState(navigateBack)
 
     val context = LocalContext.current
-    val makeToast: (String) -> Unit = { message ->
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-    }
 
     val imeVisible = WindowInsets.isImeVisible
 
@@ -60,12 +57,12 @@ fun AccountSettingScreen(
                     }
 
                     is AccountSettingUiEvent.SaveSuccess -> {
-                        makeToast("保存しました")
+                        showToast(context, "保存しました")
                         latestNavigateBack()
                     }
 
                     is AccountSettingUiEvent.SaveFailure -> {
-                        makeToast("保存に失敗しました")
+                        showToast(context, "保存に失敗しました")
                     }
 
                     is AccountSettingUiEvent.NavigateBack -> {

@@ -42,7 +42,7 @@ class UserSettingsRepositoryImpl @Inject constructor(
                 themeColor = ThemeColor(
                     useGitGrowThemeColor = preferences[USE_GIT_GROW_THEME_COLOR] ?: true,
                     useDynamicColor = preferences[USE_DYNAMIC_COLOR] ?: false,
-                )
+                ),
             )
         }
 

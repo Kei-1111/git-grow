@@ -19,6 +19,6 @@ object RepositoryModule {
     @Singleton
     fun provideUserSettingsRepository(
         dataStore: DataStore<Preferences>,
-        @IoDispatcher coroutineDispatcher: CoroutineDispatcher
+        @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
     ): UserSettingsRepository = UserSettingsRepositoryImpl(dataStore, coroutineDispatcher)
 }

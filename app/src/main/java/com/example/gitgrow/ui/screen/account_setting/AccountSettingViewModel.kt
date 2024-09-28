@@ -1,5 +1,6 @@
 package com.example.gitgrow.ui.screen.account_setting
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gitgrow.domain.usecase.GetUserSettingsUseCase
@@ -59,6 +60,7 @@ class AccountSettingViewModel @Inject constructor(
                 saveUserNameUseCase(uiState.value.userName)
                 _uiEvent.emit(AccountSettingUiEvent.SaveSuccess)
             } catch (e: Exception) {
+                Log.e("AccountSettingViewModel", "Failed to save user name", e)
                 _uiEvent.emit(AccountSettingUiEvent.SaveFailure)
             }
         }

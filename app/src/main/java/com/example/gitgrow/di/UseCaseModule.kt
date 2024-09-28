@@ -20,18 +20,18 @@ object UseCaseModule {
     @Provides
     @Singleton
     fun provideGetUserSettingsUseCase(
-        userSettingsRepository: UserSettingsRepository
+        userSettingsRepository: UserSettingsRepository,
     ): GetUserSettingsUseCase = GetUserSettingsUseCaseImpl(userSettingsRepository)
 
     @Provides
     @Singleton
     fun provideSaveUserNameUseCase(
-        userSettingsRepository: UserSettingsRepository
+        userSettingsRepository: UserSettingsRepository,
     ): SaveUserNameUseCase = SaveUserNameUseCaseImpl(userSettingsRepository)
 
     @Provides
     @Singleton
     fun provideSaveThemeColorUseCase(
-        userSettingsRepository: UserSettingsRepository
+        userSettingsRepository: UserSettingsRepository,
     ): SaveThemeColorUseCase = SaveThemeColorUseCaseImpl(userSettingsRepository)
 }

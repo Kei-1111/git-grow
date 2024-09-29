@@ -96,7 +96,7 @@ private fun SettingsScreenItem(
                     onClick = onClick,
                 ),
             shape = MaterialTheme.shapes.medium,
-            color = MaterialTheme.colorScheme.surfaceContainerHighest,
+            color = MaterialTheme.colorScheme.surfaceContainer,
         ) {
             Column {
                 settingItems.forEachIndexed { index, settingItem ->

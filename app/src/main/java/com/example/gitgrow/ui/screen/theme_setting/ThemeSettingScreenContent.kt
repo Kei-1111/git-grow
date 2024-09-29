@@ -38,7 +38,7 @@ fun ThemeSettingScreenContent(
         )
         Surface(
             modifier = Modifier.fillMaxWidth(),
-            color = MaterialTheme.colorScheme.surfaceContainerHighest,
+            color = MaterialTheme.colorScheme.surfaceContainer,
             shape = MaterialTheme.shapes.medium,
         ) {
             Column {

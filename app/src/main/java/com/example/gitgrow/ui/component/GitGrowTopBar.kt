@@ -32,7 +32,7 @@ fun GitGrowTopBar(
     Surface(
         modifier = modifier
             .height(dimensionResource(id = R.dimen.top_app_bar_height) + topPadding),
-        color = MaterialTheme.colorScheme.primaryContainer,
+        color = MaterialTheme.colorScheme.secondaryContainer,
     ) {
         GitGrowTopBarContent(
             currentScreen = currentScreen,

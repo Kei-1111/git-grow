@@ -11,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.dimensionResource
 import com.example.gitgrow.R
+import com.example.gitgrow.ui.theme.UiConfig
 
 @Composable
 fun GitGrowTextField(
@@ -20,7 +22,7 @@ fun GitGrowTextField(
     onTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     label: String = "",
-    backgroundColor: Color = MaterialTheme.colorScheme.surfaceContainerHighest,
+    backgroundColor: Color = MaterialTheme.colorScheme.surfaceContainer,
 ) {
     Surface(
         modifier = modifier,
@@ -36,7 +38,7 @@ fun GitGrowTextField(
             if (text.isEmpty()) {
                 BodyMediumText(
                     text = label,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = UiConfig.DisabledContentAlpha),
                 )
             }
             BasicTextField(
@@ -45,7 +47,10 @@ fun GitGrowTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
                 singleLine = true,
-                textStyle = MaterialTheme.typography.bodyMedium,
+                textStyle = MaterialTheme.typography.bodyMedium.copy(
+                    color = MaterialTheme.colorScheme.onSurface,
+                ),
+                cursorBrush = SolidColor(MaterialTheme.colorScheme.primaryContainer),
             )
         }
     }
